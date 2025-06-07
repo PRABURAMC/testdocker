@@ -25,5 +25,5 @@ stages:
         command: 'buildAndPush'
         repository: '$(acrName).azurecr.io/$(imageName)'
         dockerfile: 'Dockerfile'
-        containerRegistry: 'db113a7e-38b9-4e40-95c0-ac61585e2457'
+        containerRegistry: '44583c40-8022-44ee-b55f-f4213cf5a309'
         tags: '$(tag)'
