@@ -29,5 +29,5 @@ steps:
       releaseName: 'app'
       arguments: >
         --set image.repository=$(acrName).azurecr.io/$(imageName) 
-        --set image.tag=$(imageTag)
+        --set image.tag=latest
 
