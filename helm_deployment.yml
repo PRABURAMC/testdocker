@@ -19,7 +19,7 @@ steps:
   # Step 2: Deploy to AKS using Helm
   - task: HelmDeploy@0
     inputs:
-      azureSubscription: 'AKS_cluster connection'
+      azureSubscription: 'AKS-Service-Connection'
       azureResourceGroup: 'MyResourceGroup'
       kubernetesCluster: '$(aksCluster)'
       namespace: 'default'
