@@ -20,7 +20,7 @@ steps:
   - task: HelmDeploy@0
     inputs:
       azureSubscription: 'AKS-Service-Connection'
-      azureResourceGroup: 'MyResourceGroup'
+      azureResourceGroup: 'AKS-CLUSTER1'
       kubernetesCluster: '$(aksCluster)'
       namespace: 'default'
       command: 'upgrade'
