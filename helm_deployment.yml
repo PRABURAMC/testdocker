@@ -26,7 +26,8 @@ steps:
       command: 'upgrade'
       chartType: 'FilePath'
       chartPath: '$(helmChartPath)'
-      releaseName: 'my-app'
+      releaseName: 'app'
       arguments: >
-        --set image.repository=$(acrName).azurecr.io/$(imageName)
+        --set image.repository=$(acrName).azurecr.io/$(imageName) 
         --set image.tag=$(imageTag)
+
