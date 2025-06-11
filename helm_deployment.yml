@@ -5,7 +5,7 @@ pool:
 
 variables:
   acrName: 'prabuaksregistry'
-  imageName: 'my-app'
+  imageName: '41'
   imageTag: '$(Build.BuildId)'
   aksCluster: 'prabu-aks'
   helmChartPath: 'helm/'
