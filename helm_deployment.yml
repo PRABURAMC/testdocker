@@ -7,7 +7,7 @@ variables:
   acrName: 'prabuaksregistry'
   imageName: 'my-app'
   imageTag: '$(Build.BuildId)'
-  aksCluster: 'MyAKSCluster'
+  aksCluster: 'prabu-aks'
   helmChartPath: 'helm/'
 
 steps:
