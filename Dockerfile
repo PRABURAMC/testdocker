@@ -1,7 +1,10 @@
-FROM ubuntu 
-RUN apt update 
-RUN apt install apache2 -y
-RUN apt install apache2-utils -y 
-RUN apt clean  
+FROM ubuntu:latest
+
+# Update package list and install Apache
+RUN apt update && apt install -y apache2
+
+# Expose port 80 for HTTP traffic
 EXPOSE 80
-CMD [“apache2ctl”, “-D”, “FOREGROUND”]
+COPY index.html /var/www/html/index.html
+# Keep Apache running in the foreground
+CMD ["apachectl", "-D", "FOREGROUND"]
