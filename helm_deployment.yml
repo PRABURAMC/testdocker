@@ -23,11 +23,9 @@ steps:
       azureResourceGroup: 'AKS-CLUSTER1'
       kubernetesCluster: '$(aksCluster)'
       namespace: 'default'
-      command: 'upgrade'
+      command: 'install'
       chartType: 'FilePath'
       chartPath: '$(helmChartPath)'
-      releaseName: 'app'
-      arguments: >
-        --set image.repository=$(acrName).azurecr.io/$(acrName).azurecr.io/$(imageName) 
-        --set image.tag=$(imageTag)
+      releaseName: 'app_apache'
+
 
