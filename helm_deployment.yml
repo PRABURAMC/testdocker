@@ -5,7 +5,7 @@ pool:
 
 variables:
   acrName: 'prabuaksregistry'
-  imageName: '41'
+  imageName: 'apache'
   imageTag: '41'
   aksCluster: 'prabu-aks'
   helmChartPath: 'helm/'
@@ -28,6 +28,6 @@ steps:
       chartPath: '$(helmChartPath)'
       releaseName: 'app'
       arguments: >
-        --set image.repository=$(acrName).azurecr.io/$(imageName) 
+        --set image.repository=$(acrName).azurecr.io/$(acrName).azurecr.io/$(imageName) 
         --set image.tag=latest
 
