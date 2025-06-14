@@ -33,6 +33,6 @@ steps:
       command: 'install'
       chartType: 'FilePath'
       chartPath: '$(helmChartPath)'
-      releaseName: 'app_apache'
+      releaseName: 'apache'
 
 
