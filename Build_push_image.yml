@@ -23,7 +23,7 @@ stages:
     - task: Docker@2
       inputs:
         command: 'buildAndPush'
-        repository: 'prabuaksregistry.azurecr.io/apache'
+        repository: 'apache'
         dockerfile: 'Dockerfile'
         containerRegistry: '44583c40-8022-44ee-b55f-f4213cf5a309'
         tags: '$(tag)'
