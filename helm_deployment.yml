@@ -1,5 +1,12 @@
-trigger:
-  - none  
+resources:
+  pipelines:
+    - pipeline: CI_Pipeline
+      source: 'Build'
+      trigger:
+        branches:
+          include:
+            - add_helm
+
 pool:
   vmImage: 'ubuntu-latest'
 
