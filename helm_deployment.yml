@@ -18,8 +18,12 @@ stages:
     steps:
     - task: Docker@2
       inputs:
-      command: 'login'
-      containerRegistry: '44583c40-8022-44ee-b55f-f4213cf5a309'  
+        command: 'login'
+        containerRegistry: '44583c40-8022-44ee-b55f-f4213cf5a309'
+
+    - script: |
+        az acr login --name prabuaksregistry
+      displayName: 'Login to Azure Container Registry'
 
     - script: |
         docker run --privileged --rm tonistiigi/binfmt --install arm64
@@ -35,5 +39,3 @@ stages:
           -t prabuaksregistry.azurecr.io/apache:$(tag) \
           --push .
       displayName: 'Build and Push ARM64 Image'
-
-
