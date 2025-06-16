@@ -1,0 +1,24 @@
+parameters:
+  - name: ReleaseName
+    type: string
+    default: "my-release"
+
+trigger:
+- none
+
+stages:
+- stage: delete
+  displayName: Delete failed deployment
+  jobs:
+  - job: cleanup
+    displayName: Uninstall Helm deployment
+    steps:
+    - task: HelmDeploy@0
+      inputs:
+        connectionType: 'Azure Resource Manager'
+        azureSubscription: 'azure_subscription_conn'
+        azureResourceGroup: 'myResourceGroup'
+        kubernetesCluster: 'myAKSCluster'
+        command: 'uninstall'
+        releaseName: '${{ parameters.ReleaseName }}'
+        namespace: 'default'

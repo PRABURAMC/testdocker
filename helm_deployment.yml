@@ -1,3 +1,9 @@
+parameters:
+  - name: helm_command
+    type: string
+    values:
+      - install
+      - upgrade
 
 trigger:
 - none
@@ -24,7 +30,7 @@ steps:
       azureResourceGroup: 'AKS-CLUSTER1'
       kubernetesCluster: '$(aksCluster)'
       namespace: 'default'
-      command: 'install'
+      command: '${{ parameters.helm_command }}'
       chartType: 'FilePath'
       chartPath: '$(helmChartPath)'
       releaseName: 'httpd'
