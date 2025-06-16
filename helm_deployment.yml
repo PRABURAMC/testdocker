@@ -1,41 +1,32 @@
+
 trigger:
 - none
-
-resources:
-- repo: self
+pool:
+  vmImage: 'ubuntu-latest'
 
 variables:
-  tag: '$(Build.BuildId)'
+  acrName: 'prabuaksregistry'
+  imageName: 'apache'
+  imageTag: 'latest'
+  aksCluster: 'prabu-aks'
+  helmChartPath: 'helm/'
 
-stages:
-- stage: Build
-  displayName: Build image
-  jobs:
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-    - task: Docker@2
-      inputs:
-        command: 'login'
-        containerRegistry: '44583c40-8022-44ee-b55f-f4213cf5a309'
+steps:
+  # Step1: Install Helm on the Pipeline Agent
+  - task: HelmInstaller@0
+    inputs:
+      helmVersion: 'latest'
 
-    - script: |
-        az acr login --name prabuaksregistry
-      displayName: 'Login to Azure Container Registry'
+  # Step 2: Deploy to AKS using Helm
+  - task: HelmDeploy@0
+    inputs:
+      azureSubscription: 'AKS-Service-Connection'
+      azureResourceGroup: 'AKS-CLUSTER1'
+      kubernetesCluster: '$(aksCluster)'
+      namespace: 'default'
+      command: 'upgrade'
+      chartType: 'FilePath'
+      chartPath: '$(helmChartPath)'
+      releaseName: 'apache'
 
-    - script: |
-        docker run --privileged --rm tonistiigi/binfmt --install arm64
-      displayName: 'Enable QEMU for ARM64'
 
-    - script: |
-        docker buildx create --name mybuilder --driver docker-container --use
-        docker buildx inspect --bootstrap
-      displayName: 'Set Up Docker Buildx'
-
-    - script: |
-        docker buildx build --platform linux/arm64 \
-          -t prabuaksregistry.azurecr.io/apache:$(tag) \
-          --push .
-      displayName: 'Build and Push ARM64 Image'
