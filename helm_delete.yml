@@ -15,10 +15,11 @@ stages:
     steps:
     - task: HelmDeploy@0
       inputs:
-        connectionType: 'Azure Resource Manager'
         azureSubscription: 'AKS-Service-Connection'
-        azureResourceGroup: 'myResourceGroup'
-        kubernetesCluster: 'myAKSCluster'
-        command: 'uninstall'
-        releaseName: '${{ parameters.ReleaseName }}'
+        azureResourceGroup: 'AKS-CLUSTER1'
+        kubernetesCluster: '$(aksCluster)'
         namespace: 'default'
+        command: 'uninstall'
+        chartType: 'FilePath'
+        chartPath: '$(helmChartPath)'
+        releaseName: 'httpd'
