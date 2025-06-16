@@ -1,12 +1,13 @@
 parameters:
-  - name: helm_command
-    type: string
-    default: "my-release"
-    values:
-      - install
-      - upgrade
-    displayName: "choose helm command"
-    description: "for 1st time deployment only choose  install"
+- name: helm_command
+  type: string
+  default: "install"
+  values:
+  - install
+  - upgrade
+  displayName: "Choose Helm command"
+  description: "Caution: 'upgrade' will modify existing deployments."
+
 
 trigger:
 - none
