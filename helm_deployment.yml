@@ -5,8 +5,8 @@ parameters:
     values:
       - install
       - upgrade
-    displayName: choose helm command
-    description: for 1st time deployment only choose  install
+    displayName: "choose helm command"
+    description: "for 1st time deployment only choose  install"
 
 trigger:
 - none
