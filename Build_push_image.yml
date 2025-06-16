@@ -16,10 +16,14 @@ stages:
     pool:
       vmImage: ubuntu-latest
     steps:
-    - task: Docker@2
+    - task: AzureCLI@2
       inputs:
-        command: 'login'
-        containerRegistry: '44583c40-8022-44ee-b55f-f4213cf5a309'
+        azureSubscription: 'acr_conn'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          az acr login --name prabuaksregistry
+
 
     - script: |
         az acr login --name prabuaksregistry
