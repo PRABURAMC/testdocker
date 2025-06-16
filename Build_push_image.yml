@@ -24,11 +24,6 @@ stages:
         inlineScript: |
           az acr login --name prabuaksregistry
 
-
-    - script: |
-        az acr login --name prabuaksregistry
-      displayName: 'Login to Azure Container Registry'
-
     - script: |
         docker run --privileged --rm tonistiigi/binfmt --install arm64
       displayName: 'Enable QEMU for ARM64'
