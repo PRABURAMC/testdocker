@@ -1,7 +1,7 @@
 parameters:
 - name: helm_command
   type: string
-  default: "install"
+  default: "upgrade"
   values:
   - install
   - upgrade
