@@ -1,7 +1,3 @@
-# Docker
-# Build a Docker image
-# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
-
 trigger:
 - none
 
@@ -9,7 +5,7 @@ resources:
 - repo: self
 
 variables:
-  tag: '$(Build.BuildId)'
+  tag: 'latest'
 
 stages:
 - stage: Build
@@ -20,10 +16,17 @@ stages:
     pool:
       vmImage: ubuntu-latest
     steps:
-    - task: Docker@2
-      inputs:
-        command: 'buildAndPush'
-        repository: 'apache'
-        dockerfile: 'Dockerfile'
-        containerRegistry: '44583c40-8022-44ee-b55f-f4213cf5a309'
-        tags: '2'
+    - script: |
+        docker run --privileged --rm tonistiigi/binfmt --install arm64
+      displayName: 'Enable QEMU for ARM64'
+
+    - script: |
+        docker buildx create --name mybuilder --driver docker-container --use
+        docker buildx inspect --bootstrap
+      displayName: 'Set Up Docker Buildx'
+
+    - script: |
+        docker buildx build --platform linux/arm64 \
+          -t prabuaksregistry.azurecr.io/apache:$(tag) \
+          --push .
+      displayName: 'Build and Push ARM64 Image'

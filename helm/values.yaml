@@ -1,6 +1,6 @@
 image:
   repository: prabuaksregistry.azurecr.io/apache
-  tag: 2
+  tag: latest
 replicaCount: 2
 resources:
   requests:
