@@ -16,7 +16,7 @@ stages:
     - task: HelmDeploy@0
       inputs:
         connectionType: 'Azure Resource Manager'
-        azureSubscription: 'azure_subscription_conn'
+        azureSubscription: 'AKS-Service-Connection'
         azureResourceGroup: 'myResourceGroup'
         kubernetesCluster: 'myAKSCluster'
         command: 'uninstall'

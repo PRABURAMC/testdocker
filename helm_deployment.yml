@@ -5,9 +5,6 @@ parameters:
   values:
   - install
   - upgrade
-  displayName: "Choose Helm command"
-  description: "Caution: 'upgrade' will modify existing deployments."
-
 
 trigger:
 - none
