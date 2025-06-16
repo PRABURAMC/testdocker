@@ -24,9 +24,9 @@ steps:
       azureResourceGroup: 'AKS-CLUSTER1'
       kubernetesCluster: '$(aksCluster)'
       namespace: 'default'
-      command: 'upgrade'
+      command: 'install'
       chartType: 'FilePath'
       chartPath: '$(helmChartPath)'
-      releaseName: 'apache'
+      releaseName: 'httpd'
 
 
