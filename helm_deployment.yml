@@ -16,6 +16,11 @@ stages:
     pool:
       vmImage: ubuntu-latest
     steps:
+    - task: Docker@2
+      inputs:
+      command: 'login'
+      containerRegistry: '44583c40-8022-44ee-b55f-f4213cf5a309'  
+
     - script: |
         docker run --privileged --rm tonistiigi/binfmt --install arm64
       displayName: 'Enable QEMU for ARM64'
